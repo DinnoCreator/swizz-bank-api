@@ -25,9 +25,8 @@ CREATE TABLE accountsswizz (
    account_name varchar(255) NOT NULL,
    c_date DATE NOT NULL,
    c_time TIME NOT NULL,
-   FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+   FOREIGN KEY (customer_id) REFERENCES customersswizz(customer_id)
 );
-
 alter table transactions add column 
 transaction_time TIME;
 
