@@ -65,7 +65,7 @@ router.post("/create", async (req, res) => {
     //gets new customer uuid and other details
     const customerID = newCustomer.rows[0].customer_id;
 
-    if (accountType1.length >= 7) {
+    if (accBal1.length > 1) {
       // Generates first 3 digits of the account number based on accType selected from client side
     let typeAcc = await function () {
       let usn = "";
@@ -115,7 +115,7 @@ router.post("/create", async (req, res) => {
       Registration: "Successful!",
       email: newCustomer.rows[0].customer_email,
     });
-    } else if (accountType1.length < 7) {
+    } else {
       // Generates first 3 digits of the account number based on accType selected from client side
       let typeAcc = await function () {
         let usn = "";
@@ -150,7 +150,7 @@ router.post("/create", async (req, res) => {
 
     
   } catch (error) {
-    console.log(error);
+    return res.status(411).json({ error: error.message });
   }
 });
 
