@@ -119,9 +119,9 @@ router.post("/create", async (req, res) => {
       // Generates first 3 digits of the account number based on accType selected from client side
       let typeAcc = await function () {
         let usn = "";
-        if (accountType1 === "Savings") {
+        if (accountType === "Savings") {
           return (usn = accTypeSavings);
-        } else if (accountType1 === "Checkings") {
+        } else if (accountType === "Checkings") {
           return (usn = accTypeCheckings);
         }
       };
