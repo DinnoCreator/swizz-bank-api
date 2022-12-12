@@ -21,7 +21,7 @@ router.get("/user", authenticateToken, async (req, res) => {
     try {
       const userId = req.user;
       const userAccounts = await pool.query(
-        "SELECT * FROM accounts WHERE customer_id = $1 ORDER BY c_date ASC, c_time ASC",
+        "SELECT * FROM accountsswizz WHERE customer_id = $1 ORDER BY c_date ASC, c_time ASC",
         [userId]
       );
   

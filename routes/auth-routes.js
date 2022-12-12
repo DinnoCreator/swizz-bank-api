@@ -35,7 +35,7 @@ router.post("/create", async (req, res) => {
     
     // Checks Customer records for existing customers
     const customers = await pool.query(
-      "SELECT * FROM customers WHERE customer_email = $1",
+      "SELECT * FROM customersswizz WHERE customer_email = $1",
       [email]
     );
     if (customers.rows.length !== 0)
@@ -45,7 +45,7 @@ router.post("/create", async (req, res) => {
 
      //saves new customer
      const newCustomer = await pool.query(
-      "INSERT INTO customers(first_name,middle_name,last_name,customer_email,customer_gender,customer_address,customer_phoneno,customer_dob,customer_password,customer_payment,c_date,c_time) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING *",
+      "INSERT INTO customersswizz(first_name,middle_name,last_name,customer_email,customer_gender,customer_address,customer_phoneno,customer_dob,customer_password,customer_payment,c_date,c_time) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING *",
       [
         fName,
         mName,
@@ -86,7 +86,7 @@ router.post("/create", async (req, res) => {
     };
       // uses new customer uuid to create bank account
     await pool.query(
-      "INSERT INTO accounts(account_no,customer_id,account_bal,account_type,account_status,account_name,c_date,c_time) VALUEs ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *",
+      "INSERT INTO accountsswizz(account_no,customer_id,account_bal,account_type,account_status,account_name,c_date,c_time) VALUEs ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *",
       [
         `${typeAcc()}${accNo.index()}`,
         customerID,
@@ -99,7 +99,7 @@ router.post("/create", async (req, res) => {
       ]
     );
     await pool.query(
-      "INSERT INTO accounts(account_no,customer_id,account_bal,account_type,account_status,account_name,c_date,c_time) VALUEs ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *",
+      "INSERT INTO accountsswizz(account_no,customer_id,account_bal,account_type,account_status,account_name,c_date,c_time) VALUEs ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *",
       [
         `${typeAcc1()}${accNo.index()}`,
         customerID,
@@ -128,7 +128,7 @@ router.post("/create", async (req, res) => {
       
       // uses new customer uuid to create bank account
     await pool.query(
-      "INSERT INTO accounts(account_no,customer_id,account_bal,account_type,account_status,account_name,c_date,c_time) VALUEs ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *",
+      "INSERT INTO accountsswizz(account_no,customer_id,account_bal,account_type,account_status,account_name,c_date,c_time) VALUEs ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *",
       [
         `${typeAcc()}${accNo.index()}`,
         customerID,
@@ -161,7 +161,7 @@ router.post("/login", async (req, res) => {
     
     //Email Check
     const users = await pool.query(
-      "SELECT * FROM customers WHERE customer_email = $1",
+      "SELECT * FROM customersswizz WHERE customer_email = $1",
       [email]
     );
     if (users.rows.length === 0)

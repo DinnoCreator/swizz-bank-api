@@ -1,7 +1,7 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE DATABASE Swizz;
 
-CREATE TABLE customers (
+CREATE TABLE customersswizz (
    customer_id  uuid primary key DEFAULT uuid_generate_v4(),
    first_name varchar(255) NOT NULL,
    middle_name varchar(255) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE customers (
    c_date DATE NOT NULL,
    c_time TIME NOT NULL
 );
-CREATE TABLE accounts (
+CREATE TABLE accountsswizz (
    account_no varchar(10) primary key NOT NULL,
    customer_id UUID NOT NULL,
    account_bal NUMERIC(17, 2),
